@@ -1,0 +1,32 @@
+{
+  "name": "express-twig-markdown",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": {
+    "name": "Dimitar Slaev",
+    "email": "dimslaev@gmail.com",
+    "url": "https://dimslaev.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dimslaev/static-blog"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "twig",
+    "markdown",
+    "yaml"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "marked": "^0.5.2",
+    "twig": "^1.12.0",
+    "yaml-front-matter": "^4.0.0"
+  }
+}
