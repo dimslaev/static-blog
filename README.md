@@ -1,1 +1,7 @@
-Mini static blog using express, twig, markdown, and yaml front matter.
+## Simple static site generator
+
+Really simple static site generator using: 
+  - Express
+  - Twig
+  - Markdown
+  - Yaml 

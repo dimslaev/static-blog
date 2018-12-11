@@ -1,0 +1,36 @@
+body {
+  font-family: sans-serif;
+}
+
+header {
+  height: 9rem;
+  padding: 0 2rem;
+  background-size: cover;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+}
+
+main {
+  padding: 2rem 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.tags span {
+  padding: 0.25rem 0.5rem;
+  background: #f1f1f1;
+  margin-right: 5px;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.075rem;
+  text-transform: uppercase;
+}
+
+.tags span:before {
+  content: '#';
+}
