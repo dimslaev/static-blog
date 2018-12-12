@@ -7,18 +7,14 @@ const yaml = require('yaml-front-matter')
 const app = express()
 const port = process.env.PORT || 3000
 
-// Set public folder 
-app.use(express.static(path.join(__dirname, 'public')))
-
-// Set view engine 
-twig.cache(false) // Disable twig cache 
 app.set('view engine', 'twig')
 app.set('twig options', { strict_variables: false })
+twig.cache(false) // Disable twig cache 
 
-// Start server 
+app.use(express.static(path.join(__dirname, 'public')))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-// Locate and read data file   
+// Read markdown file   
 async function read(path) {
   return new Promise(resolve => {
     try {
@@ -30,30 +26,25 @@ async function read(path) {
   })
 }
 
-// Convert to yaml / html
+// Parse yaml & convert to html
 function parse(data) {
-  // Parse yaml
   const frontMatter = yaml.loadFront(data) 
-
-  // Convert markdown 
   const html = markdown(frontMatter.__content)
 
-  // Replace markdown with html 
+  // Replace markdown with html in object
   delete frontMatter.__content
-  data = {...frontMatter, html: html}
+  frontMatter = {...frontMatter, html: html}
 
-  return data
+  return frontMatter
 }
 
 // Home route 
 app.get('/', async (req, res) => {
-  let data = await read('home')
+  const data = await read('home')
 
   if (data) {
-    // Render home template
     res.render('home.twig', parse(data))
   } else {
-    // Return error 
     res.send('Error: Page doesn\'t exist')
   }
 })
