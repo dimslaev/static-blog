@@ -9,16 +9,16 @@ const port = process.env.PORT || 3000
 
 app.set('view engine', 'twig')
 app.set('twig options', { strict_variables: false })
-twig.cache(false) // Disable twig cache 
+twig.cache(false)
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
-// Read markdown file   
-async function read(path) {
+// Get markdown file based on route 
+async function read(route) {
   return new Promise(resolve => {
     try {
-      const data = fs.readFileSync(`${__dirname}/data/${path}/index.md`).toString('utf8')
+      const data = fs.readFileSync(`${__dirname}/data/${route}/index.md`).toString('utf8')
       resolve(data)
     } catch (error) {
       resolve(false)
@@ -26,7 +26,7 @@ async function read(path) {
   })
 }
 
-// Parse yaml & convert to html
+// Parse data and convert markdown to html
 function parse(data) {
   const frontMatter = yaml.loadFront(data) 
   const html = markdown(frontMatter.__content)
