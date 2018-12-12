@@ -28,7 +28,7 @@ async function read(route) {
 
 // Parse data and convert markdown to html
 function parse(data) {
-  const frontMatter = yaml.loadFront(data) 
+  let frontMatter = yaml.loadFront(data) 
   const html = markdown(frontMatter.__content)
 
   // Replace markdown with html in object
